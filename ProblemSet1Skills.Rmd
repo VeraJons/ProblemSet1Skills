@@ -1,0 +1,50 @@
+---
+title: "ProblemSet1Skills"
+author: "Vera Jónsdóttir"
+date: "4/8/2021"
+output: html_document
+---
+```{r}
+rm(list=ls())
+
+install.packages("tidyverse")
+install.packages("dslabs")
+install.packages("ggplot2")
+install.packages("rmarkdown")
+
+library (tidyverse)
+library (dslabs)
+library(rmarkdown)
+library(ggplot2)
+
+list.of.packages <- c("tidyverse", "dslabs", "rmarkdown")
+```
+
+```{r}
+#Part 2.1
+
+View(polls_us_election_2016)
+#2.1.1
+nrow(polls_us_election_2016)
+ncol(polls_us_election_2016)
+```
+```{r}
+#2.1.2
+# Graph 1
+ggplot(data = polls_us_election_2016) +
+  geom_point(mapping = aes(x = startdate,
+                           y = rawpoll_clinton,
+                           color = rawpoll_clinton))
+```
+3
+grade. Grade assigned by fivethirtyeight to pollster. The variable grade describes the grade
+assigned by fivethirtyeight to pollster. It's the rating given to pollster based on their accuracy and quality.
+
+```{r}
+#4
+ggplot(data = polls_us_election_2016)+
+  geom_point(mapping = aes(x = population,
+                           y = samplesize,
+                           color = grade))
+```
+
