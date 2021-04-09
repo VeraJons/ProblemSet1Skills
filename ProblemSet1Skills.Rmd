@@ -306,5 +306,15 @@ The problem with this first plot is only giving us particular points in the data
 Geom_jitter spreads out points that would otherwise usually overlap under geom_count so that you can see them better. geom_jitter adds a small variation to the location of each point and is more useful for smaller datasets.
 
 2.5.3
+?geom_bar
+
+2.6.1
+?coord_flip
+Flip cartesian will change horizontal to vertical and vice versa. This is mostly useful when convering geoms and statistics that display x conditional on y or y conditional on x.
+
+```{r}
+#2.6.2
+ggplot(data = polls_us_election_2016,mapping = aes(x = rawpoll_clinton,y = rawpoll_trump)) +geom_point() +geom_abline() +coord_fixed()
+```
 
 
