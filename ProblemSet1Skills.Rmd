@@ -248,10 +248,8 @@ Taking the grade out of the grade/legend made the graph less informing as now we
 
 ```
 
-in geom it is possible to choose between two bar charts: geom_bar or geom_col. They slighlty different.In order to make the heights of the bars represent the values in the data it is more beneficial to use geom_col. However geom_bar will make the height of the bar proportional to the number of cases in each group or the sum of weights if aesthetic is supplied. 
-
 2.4.1.1
-geom_bar() makes the height of the bar proportional to the number of cases in each group (or if the weight aesthetic is supplied, the sum of the weights). If you want the heights of the bars to represent values in the data, use geom_col() instead.
+In geom it is possible to choose between two bar charts: geom_bar or geom_col. They slighlty different.In order to make the heights of the bars represent the values in the data it is more beneficial to use geom_col. However geom_bar will make the height of the bar proportional to the number of cases in each group or the sum of weights if aesthetic is supplied. If you want the heights of the bars to represent values in the data, use geom_col()
 
 
 ```{r}
@@ -314,7 +312,7 @@ Flip cartesian will change horizontal to vertical and vice versa. This is mostly
 
 ```{r}
 #2.6.2
-ggplot(data = polls_us_election_2016,mapping = aes(x = rawpoll_clinton,y = rawpoll_trump)) +geom_point() +geom_abline() +coord_fixed()
+ggplot(data = polls_us_election_2016,mapping = aes(x = rawpoll_clinton,y = rawpoll_trump))+geom_point() +geom_abline() +coord_fixed() 
 ```
-
-
+geom_abline() draws a line through the plot.
+coord_fixed() fixes the ration between x and y so they are proportionally correct.
