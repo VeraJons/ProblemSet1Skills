@@ -260,12 +260,10 @@ ggplot(data=polls_us_election_2016, aes(x=grade)) + stat_count()
 
 ```{r}
 #2.4.1.3
-?stat_smooth
-
 ```
 
-stat_smooth computes y which is predicted value, ymin which is lower pointwise confidence interval around the mean, ymax which is upper pointwise confidence interval around the mean, se which is the standard error. The x and y data are the parameters that control its behavior
-?stat_smooth()
+stat_smooth computes y which is predicted value, ymin which is lower pointwise confidence interval around the mean, ymax which is upper pointwise confidence interval around the mean, se which is the standard error. The x and y data are the parameters that control its behavior.
+
 
 ```{r}
 #2.4.1.4
@@ -307,7 +305,6 @@ geom_bar(mapping = aes(x = cut, fill = color, y = ..prop.., group=color), postio
 You need to run stack instead of dodge
 
 2.6.1
-?coord_flip
 Flip cartesian will change horizontal to vertical and vice versa. This is mostly useful when convering geoms and statistics that display x conditional on y or y conditional on x.
 
 ```{r}
@@ -315,5 +312,5 @@ Flip cartesian will change horizontal to vertical and vice versa. This is mostly
 ggplot(data = polls_us_election_2016,mapping = aes(x = rawpoll_clinton,y = rawpoll_trump))+geom_point() +geom_abline() +coord_fixed() 
 ```
 geom_abline() draws a line through the plot.
-coord_fixed() fixes the ration between x and y so they are proportionally correct.
+coord_fixed() fixes the ration between x and y so they are proportionally correct. This plot is explaing the us elections and the raw data from the polls of Hillary Clinton and Donald Trump.
 
