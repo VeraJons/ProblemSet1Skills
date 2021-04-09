@@ -28,7 +28,7 @@ view(polls_us_election_2016)
 nrow(polls_us_election_2016)
 ncol(polls_us_election_2016)
 ```
-
+The columns represent the different pollsters that are conducting the survey the US 2016 Elections and the rows are the different indicators that are being tested or looked at for each pollster.
 
 ```{r}
 #2.1.2
@@ -38,8 +38,6 @@ ggplot(data = polls_us_election_2016) +
                            y = rawpoll_clinton,
                            color = rawpoll_clinton))
 ```
-The columns represent the different pollsters that are conducting the survey the US 2016 Elections and the rows are the different indicators that are being tested or looked at for each pollster.
-
 3
 The variable is the grade assigned by fivethirtyeight to pollster. The variable grade describes the grade
 assigned by fivethirtyeight to pollster. It's the rating given to pollster based on their accuracy and quality.
@@ -48,15 +46,14 @@ assigned by fivethirtyeight to pollster. It's the rating given to pollster based
 #4
 ggplot(data = polls_us_election_2016)+
   geom_point(mapping = aes(x = population,
-                           y = samplesize,
+                           y = grade,
                            color = grade))
-#this is useless. It conveys no sort of information.
 ```
-
+It conveys no sort of information on how many values are at each point. We only see that there are values at each point marked on the plot but we do not know the concentration of values at each point which makes this plot quite unuseful.
 
 ```{r}
 #Part 2.2
-#1
+#2.2.1
 ?polls_us_election_2016
 head(polls_us_election_2016)
 colnames(polls_us_election_2016)
@@ -64,7 +61,7 @@ colnames(polls_us_election_2016)
 
 
 ```{r}
-#2 
+#2.2.2 
 #Graph 1
 ggplot(data = polls_us_election_2016) +
   geom_point(mapping = aes(x = startdate,y = samplesize,color = rawpoll_johnson))
@@ -77,20 +74,18 @@ ggplot(data = polls_us_election_2016) +
 #Graph 2
 ggplot(data = polls_us_election_2016) +
   geom_point(mapping = aes(x = startdate,y = samplesize,color = as.character(rawpoll_johnson)))
-#Answer which one is better
-#graph two is explaining by marking each value in the poll. This is obviously too much information
 
 ```
-
+The second graph is making rawpoll_johnson into a character so each individual point on the graph is turned into a color and the color of the number depends on how large it is The smaller the number the greener it becomes and the larger the number the bluer it becomes. The first plot is much more useful as it conveys information more clearly by setting up the scatterplot in a way which is much more clear visually.
 
 ```{r}
-#3
+#2.2.3
 ggplot(data = polls_us_election_2016) +
   geom_point(mapping = aes(x = startdate,
                            y = rawpoll_clinton,
                            color = samplesize >= 500))
 ```
-it changes the color of those who are above 500 and those who are below 500
+It changes the color of those who are above 500 and those who are below 500
 
 ```{r}
 #4
@@ -106,12 +101,11 @@ ggplot(data = polls_us_election_2016) +
                            y = rawpoll_clinton),
              color = "blue")
 ```
-there needs to be a bracket in between color and aes.
+there needs to be a bracket in between color and aes in order for the code to become blue.
 
 ```{r}
 #Part 2.3
 #2.3.1
-#How does the facet_grid decide the layout of the grid?
 ggplot(data = polls_us_election_2016) +
   geom_point(mapping = aes(x = startdate,y = rawpoll_clinton)) +
   facet_grid(cols = vars(population))
@@ -141,7 +135,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_point() +
   facet_grid(. ~ cty)
 ```
-the continuous variable will be converted to a categorical variable, and the plot contains a # facet for each distinct value.
+The continuous variable will be converted to a categorical variable, and the plot contains a facet for each distinct value.
 source: https://jrnold.github.io/r4ds-exercise-solutions/data-visualisation.html#facets
 ```{r}
 #2.3.3
@@ -172,8 +166,7 @@ ggplot(data = polls_us_election_2016) +
                            shape = factor(grade)))+
   facet_grid(rows=vars(population))
 ```
-The shape palette can deal with a maximum of 6 discrete values because more than 6 becomes difficult to discriminate; you have 10. Consider specifying shapes manually if you must have them.
-Removed 1961 rows containing missing values (geom_point).
+The shape palette can deal with a maximum of 6 discrete values because more than 6 becomes difficult to discriminate; here we have 10. It is possible to specify shapes manually if they are very necessary. 
 
 Part 2.4
 2.4.1
@@ -272,7 +265,7 @@ ggplot(data=polls_us_election_2016, aes(x=grade)) + stat_count()
 ```
 
 stat_smooth computes y which is predicted value, ymin which is lower pointwise confidence interval around the mean, ymax which is upper pointwise confidence interval around the mean, se which is the standard error. The x and y data are the parameters that control its behavior
-
+?stat_smooth()
 
 ```{r}
 #2.4.1.4
@@ -299,12 +292,19 @@ ggplot(data = polls_us_election_2016,mapping = aes(x = population, y = grade)) +
 The problem with this first plot is only giving us particular points in the data but not really accurately showing us the distribution in the graph. The second graph is much more concise as it shows us how many values are on each point.We can therefore more accurately see the distribution of the data in the second version.
 
 2.5.2
-?geom_jitter
-?geom_count
 Geom_jitter spreads out points that would otherwise usually overlap under geom_count so that you can see them better. geom_jitter adds a small variation to the location of each point and is more useful for smaller datasets.
 
-2.5.3
-?geom_bar
+
+```{r}
+#2.5.3
+ggplot(data = diamonds)+
+geom_bar(mapping = aes(x = cut, fill = color, y = ..prop.., group=color), postion = "dodge")
+
+ggplot(data = diamonds)+
+geom_bar(mapping = aes(x = cut, fill = color, y = ..prop.., group=color), postion = "stack")
+```
+```
+You need to run stack instead of dodge
 
 2.6.1
 ?coord_flip
@@ -316,3 +316,4 @@ ggplot(data = polls_us_election_2016,mapping = aes(x = rawpoll_clinton,y = rawpo
 ```
 geom_abline() draws a line through the plot.
 coord_fixed() fixes the ration between x and y so they are proportionally correct.
+
