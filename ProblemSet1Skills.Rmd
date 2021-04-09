@@ -1,11 +1,13 @@
 ---
 title: "ProblemSet1Skills"
-author: "Vera Jónsdóttir"
+author: "Vera Jónsdóttir" "Consulted with Ryan McGinnis"
 date: "4/8/2021"
-output: html_document
+output:
+  pdf_document: default
+  word_document: default
+  html_document: default
 ---
 ```{r}
-rm(list=ls())
 
 install.packages("tidyverse")
 install.packages("dslabs")
