@@ -1,4 +1,13 @@
 ---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+output:
+  pdf_document: default
+  html_document: default
+
 title: "ProblemSet1Skills"
 author: "Vera Jónsdóttir" "Consulted with Ryan McGinnis"
 date: "4/8/2021"
@@ -13,13 +22,9 @@ Add your initials to indicate your agreement: VJ
 
 Add your collaborators: Ryan McGinnis
 
-Late coins used this pset: 1. Late coins left: X.
----
+Late coins used this pset: 0. Late coins left: X.
+
 ```{r}
-install.packages("rmarkdown")
-install.packages("tidyverse")
-install.packages("dslabs")
-install.packages("ggplot2")
 
 library(rmarkdown)
 library (tidyverse)
