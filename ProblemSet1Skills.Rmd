@@ -135,7 +135,7 @@ Here a = all adults, lv = likely voters, rv = registered voters, and v = voters
 
 ```{r}
 #2.3.2
-# the continuous variable will be converted to a categorical variable, and the plot contains a # facet for each distinct value.
+
 ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_point() +
   facet_grid(. ~ cty)
@@ -185,15 +185,16 @@ ggplot(data = polls_us_election_2016,mapping = aes(x = startdate,y = rawpoll_tru
   geom_point() +
   geom_smooth(se=FALSE)
 ```
+
+
 ```{r}
 #2.4.2
 ggplot() +
   geom_point(data = polls_us_election_2016,mapping = aes(x = startdate,y = rawpoll_trump)) +
   geom_smooth(data = polls_us_election_2016,mapping = aes(x = startdate,y = rawpoll_trump),
               se=FALSE)
-#These graphs are identical. It is the same command however it is phrased differently.
 ```
-
+These graphs are identical. It is the same command however it is phrased differently.
 ```{r}
 #2.4.3
 ggplot(data = polls_us_election_2016) +
@@ -203,6 +204,8 @@ ggplot(data = polls_us_election_2016) +
   geom_smooth(data = polls_us_election_2016,mapping = aes(x = startdate,y = rawpoll_trump),
               se=FALSE)
 ```
+
+
 ```{r}
 #2.4.4
 #make line red
