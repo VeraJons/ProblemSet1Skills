@@ -23,11 +23,13 @@ list.of.packages <- c("tidyverse", "dslabs", "rmarkdown")
 ```{r}
 #Part 2.1
 
-View(polls_us_election_2016)
+view(polls_us_election_2016)
 #2.1.1
 nrow(polls_us_election_2016)
 ncol(polls_us_election_2016)
 ```
+
+
 ```{r}
 #2.1.2
 # Graph 1
@@ -36,9 +38,11 @@ ggplot(data = polls_us_election_2016) +
                            y = rawpoll_clinton,
                            color = rawpoll_clinton))
 ```
+#ality.
 3
 grade. Grade assigned by fivethirtyeight to pollster. The variable grade describes the grade
 assigned by fivethirtyeight to pollster. It's the rating given to pollster based on their accuracy and quality.
+```
 
 ```{r}
 #4
@@ -46,5 +50,244 @@ ggplot(data = polls_us_election_2016)+
   geom_point(mapping = aes(x = population,
                            y = samplesize,
                            color = grade))
+#this is useless. It conveys no sort of information.
 ```
+
+
+```{r}
+#Part 2.2
+#1
+?polls_us_election_2016
+head(polls_us_election_2016)
+colnames(polls_us_election_2016)
+```
+
+
+```{r}
+#2 
+#Graph 1
+ggplot(data = polls_us_election_2016) +
+  geom_point(mapping = aes(x = startdate,y = samplesize,color = rawpoll_johnson))
+
+
+```
+
+
+```{r}
+#Graph 2
+ggplot(data = polls_us_election_2016) +
+  geom_point(mapping = aes(x = startdate,y = samplesize,color = as.character(rawpoll_johnson)))
+#Answer which one is better
+#graph two is explaining by marking each value in the poll. This is obviously too much information
+
+```
+
+
+```{r}
+#3
+ggplot(data = polls_us_election_2016) +
+  geom_point(mapping = aes(x = startdate,
+                           y = rawpoll_clinton,
+                           color = samplesize >= 500))
+#it changes the color of those who are above 500 and those who are below 500
+```
+
+```{r}
+#4
+ggplot(data = polls_us_election_2016) +
+  geom_point(mapping = aes(x = startdate,
+                           y = rawpoll_clinton,
+                           color = "blue"))
+```
+
+```{r}
+ggplot(data = polls_us_election_2016) +
+  geom_point(mapping = aes(x = startdate,
+                           y = rawpoll_clinton),
+             color = "blue")
+#there needs to be a bracket in between color and aes.
+
+```
+
+```{r}
+#Part 2.3
+#1
+#How does the facet_grid decide the layout of the grid?
+ggplot(data = polls_us_election_2016) +
+  geom_point(mapping = aes(x = startdate,y = rawpoll_clinton)) +
+  facet_grid(cols = vars(population))
+
+```
+
+```{r}
+ggplot(data = polls_us_election_2016) +
+  geom_point(mapping = aes(x = startdate,y = rawpoll_clinton)) +
+  facet_grid(rows = vars(grade))
+```
+
+
+```{r}
+ggplot(data = polls_us_election_2016) +
+  geom_point(mapping = aes(x = startdate,
+                           y = rawpoll_clinton)) +
+  facet_grid(rows = vars(grade), cols = vars(population))
+
+
+#the facet clearly divides different classifications down into a matrix. The rows are classified by changes in the grade and the columns are classified by the changes in population.
+#Here a = all adults, lv = likely voters, rv = registered voters, and v = voters
+
+```
+
+
+```{r}
+#2
+# the continuous variable will be converted to a categorical variable, and the plot contains a # facet for each distinct value.
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
+  facet_grid(. ~ cty)
+#source: https://jrnold.github.io/r4ds-exercise-solutions/data-visualisation.html#facets
+
+```
+
+```{r}
+#3
+ggplot(data = polls_us_election_2016) +
+  geom_point(mapping = aes(x = startdate,
+                           y = rawpoll_trump,
+                           color = grade))+
+  facet_grid(rows=vars(population))
+#4
+```
+
+```{r}
+#4
+ggplot(data = polls_us_election_2016) +
+               theme(axis.text.x = element_text(angle = 45))+
+  geom_point(mapping = aes(x = startdate,
+                           y = rawpoll_trump,
+                           color = grade))+
+  facet_grid(rows=vars(population))
+```
+
+```{r}
+#5
+
+ggplot(data = polls_us_election_2016) +
+  geom_point(mapping = aes(x = startdate,
+                           y = rawpoll_trump,
+                           shape = factor(grade)))+
+  facet_grid(rows=vars(population))
+
+#The shape palette can deal with a maximum of 6 discrete values because more than 6 becomes difficult to discriminate; you have 10. Consider specifying shapes manually if you must have them.
+#Removed 1961 rows containing missing values (geom_point).
+
+```
+
+```{r}
+#Part 2.4
+#2.4.1
+
+```
+
+```{r}
+#2.4.2
+ggplot(data = polls_us_election_2016,mapping = aes(x = startdate,y = rawpoll_trump))+
+  geom_point() +
+  geom_smooth(se=FALSE)
+```
+```{r}
+#2.4.2
+ggplot() +
+  geom_point(data = polls_us_election_2016,mapping = aes(x = startdate,y = rawpoll_trump)) +
+  geom_smooth(data = polls_us_election_2016,mapping = aes(x = startdate,y = rawpoll_trump),
+              se=FALSE)
+#These graphs are identical. It is the same command however it is phrased differently.
+```
+
+```{r}
+#2.4.3
+ggplot(data = polls_us_election_2016) +
+  geom_point(mapping = aes(x = startdate,
+                           y = rawpoll_trump,
+                           color = grade))+
+  geom_smooth(data = polls_us_election_2016,mapping = aes(x = startdate,y = rawpoll_trump),
+              se=FALSE)
+```
+```{r}
+#2.4.4
+#make line red
+ggplot(data = polls_us_election_2016) +
+  geom_point(mapping = aes(x = startdate,
+                           y = rawpoll_trump,
+                           color = grade))+
+  geom_smooth(data = polls_us_election_2016,mapping = aes(x = startdate,y = rawpoll_trump), color = "red", se=FALSE)
+
+```
+```{r}
+#2.4.4
+#make the x and y axes labels more informative using +labs() and use and informative title
+ggplot(data = polls_us_election_2016) +
+  geom_point(mapping = aes(x = startdate,
+                           y = rawpoll_trump,
+                           color = grade))+
+  geom_smooth(data = polls_us_election_2016,mapping = aes(x = startdate,y = rawpoll_trump), color = "red", se=FALSE)+
+  labs(title = "Trump Voters", subtitle = "US Elections 2016", y = "Raw Polling Data", x = "Starting Date")
+```
+```{r}
+#Remove legend
+ggplot(data = polls_us_election_2016) +
+  geom_point(mapping = aes(x = startdate,
+                           y = rawpoll_trump,
+                           color = grade))+
+  geom_smooth(data = polls_us_election_2016,mapping = aes(x = startdate,y = rawpoll_trump), color = "red", se=FALSE)+
+  labs(title = "Trump Voters", subtitle = "US Elections 2016", y = "Raw Polling Data", x = "Starting Date")+
+  theme(legend.position = "none")
+
+```
+```{r}
+#2.4.1
+#2.4.1.1
+#geom_bar() makes the height of the bar proportional to the number of cases in each group (or if the weight aesthetic is supplied, the sum of the weights). If you want the heights of the bars to represent values in the data, use geom_col() instead.
+
+
+```
+
+```{r}
+#2.4.1.2
+ggplot(data=polls_us_election_2016, aes(x=grade)) + geom_bar()
+
+```
+```{r}
+#2.4.1.2
+ggplot(data=polls_us_election_2016, aes(x=grade)) + stat_count()
+```
+```{r}
+#2.4.1.3
+?stat_smooth
+#stat_smooth computes y which is predicted value, ymin which is lower pointwise confidence interval around the mean, ymax which is upper pointwise confidence interval around the mean, 
+#se which is the standard error. The x and y data are the parameters that control its behavior
+
+```
+
+```{r}
+#2.4.1.4
+ggplot(data = polls_us_election_2016) +
+  geom_bar(mapping = aes(x = grade, y = ..prop..))
+#the problem is with the y axis which is labelled as "..prop..". Which signifies proportion.
+#you should rather use stat_count
+```
+```{r}
+ggplot(data = polls_us_election_2016) +
+  geom_bar(mapping = aes(x = grade, y = ..prop..,fill='class',stat='count',group=factor(1)))
+
+```
+```{r}
+#2.5.1
+ggplot(data = polls_us_election_2016,mapping = aes(x = population, y = grade)) +geom_point()
+#the problem with this plot is only giving us particualr points in the data but not really accurately showing us the distribution in the graph.
+```
+
+
+
+
 
