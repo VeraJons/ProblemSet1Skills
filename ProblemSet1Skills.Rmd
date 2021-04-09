@@ -38,11 +38,10 @@ ggplot(data = polls_us_election_2016) +
                            y = rawpoll_clinton,
                            color = rawpoll_clinton))
 ```
-#ality.
+
 3
-grade. Grade assigned by fivethirtyeight to pollster. The variable grade describes the grade
+The variable is the grade assigned by fivethirtyeight to pollster. The variable grade describes the grade
 assigned by fivethirtyeight to pollster. It's the rating given to pollster based on their accuracy and quality.
-```
 
 ```{r}
 #4
@@ -89,8 +88,8 @@ ggplot(data = polls_us_election_2016) +
   geom_point(mapping = aes(x = startdate,
                            y = rawpoll_clinton,
                            color = samplesize >= 500))
-#it changes the color of those who are above 500 and those who are below 500
 ```
+it changes the color of those who are above 500 and those who are below 500
 
 ```{r}
 #4
@@ -105,9 +104,8 @@ ggplot(data = polls_us_election_2016) +
   geom_point(mapping = aes(x = startdate,
                            y = rawpoll_clinton),
              color = "blue")
-#there needs to be a bracket in between color and aes.
-
 ```
+there needs to be a bracket in between color and aes.
 
 ```{r}
 #Part 2.3
@@ -131,13 +129,9 @@ ggplot(data = polls_us_election_2016) +
   geom_point(mapping = aes(x = startdate,
                            y = rawpoll_clinton)) +
   facet_grid(rows = vars(grade), cols = vars(population))
-
-
-#the facet clearly divides different classifications down into a matrix. The rows are classified by changes in the grade and the columns are classified by the changes in population.
-#Here a = all adults, lv = likely voters, rv = registered voters, and v = voters
-
 ```
-
+The facet clearly divides different classifications down into a matrix. The rows are classified by changes in the grade and the columns are classified by the changes in population.
+Here a = all adults, lv = likely voters, rv = registered voters, and v = voters
 
 ```{r}
 #2
@@ -145,10 +139,8 @@ ggplot(data = polls_us_election_2016) +
 ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_point() +
   facet_grid(. ~ cty)
-#source: https://jrnold.github.io/r4ds-exercise-solutions/data-visualisation.html#facets
-
 ```
-
+source: https://jrnold.github.io/r4ds-exercise-solutions/data-visualisation.html#facets
 ```{r}
 #3
 ggplot(data = polls_us_election_2016) +
@@ -156,7 +148,6 @@ ggplot(data = polls_us_election_2016) +
                            y = rawpoll_trump,
                            color = grade))+
   facet_grid(rows=vars(population))
-#4
 ```
 
 ```{r}
