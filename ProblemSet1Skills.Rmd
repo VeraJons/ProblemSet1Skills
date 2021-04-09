@@ -178,7 +178,7 @@ Removed 1961 rows containing missing values (geom_point).
 Part 2.4
 2.4.1
 We use geom_line to draw a line chart. We use geom_poxplot in order to create a boxplot. We use geom_histogram to create a histogram with geom. We use geom_are in order to create an area chart using geom.
-Source:
+Source:https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf
 
 ```{r}
 #2.4.2
@@ -273,8 +273,7 @@ ggplot(data=polls_us_election_2016, aes(x=grade)) + stat_count()
 
 ```
 
-stat_smooth computes y which is predicted value, ymin which is lower pointwise confidence interval around the mean, ymax which is upper pointwise confidence interval around the mean, 
-se which is the standard error. The x and y data are the parameters that control its behavior
+stat_smooth computes y which is predicted value, ymin which is lower pointwise confidence interval around the mean, ymax which is upper pointwise confidence interval around the mean, se which is the standard error. The x and y data are the parameters that control its behavior
 
 
 ```{r}
@@ -282,7 +281,7 @@ se which is the standard error. The x and y data are the parameters that control
 ggplot(data = polls_us_election_2016) +
   geom_bar(mapping = aes(x = grade, y = ..prop..))
 ```
-the problem is with the y axis which is labelled as "..prop..". Which signifies proportion. you should rather use stat_count
+the problem is with the y axis which is labelled as "..prop.." Which signifies proportion. you should rather use stat and count as given an example in the graph below.
 
 ```{r}
 ggplot(data = polls_us_election_2016) +
@@ -293,9 +292,19 @@ ggplot(data = polls_us_election_2016) +
 
 ```{r}
 #2.5.1
+#plot 1
 ggplot(data = polls_us_election_2016,mapping = aes(x = population, y = grade)) +geom_point()
-```
-The problem with this plot is only giving us particualr points in the data but not really accurately showing us the distribution in the graph.
 
+#plot 2
+ggplot(data = polls_us_election_2016,mapping = aes(x = population, y = grade)) +geom_count()
+```
+The problem with this first plot is only giving us particular points in the data but not really accurately showing us the distribution in the graph. The second graph is much more concise as it shows us how many values are on each point.We can therefore more accurately see the distribution of the data in the second version.
+
+2.5.2
+?geom_jitter
+?geom_count
+Geom_jitter spreads out points that would otherwise usually overlap under geom_count so that you can see them better. geom_jitter adds a small variation to the location of each point and is more useful for smaller datasets.
+
+2.5.3
 
 
