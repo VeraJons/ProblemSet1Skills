@@ -38,6 +38,7 @@ ggplot(data = polls_us_election_2016) +
                            y = rawpoll_clinton,
                            color = rawpoll_clinton))
 ```
+The columns represent the different pollsters that are conducting the survey the US 2016 Elections and the rows are the different indicators that are being tested or looked at for each pollster.
 
 3
 The variable is the grade assigned by fivethirtyeight to pollster. The variable grade describes the grade
@@ -229,7 +230,6 @@ ggplot(data = polls_us_election_2016) +
   labs(title = "Trump Voters", subtitle = "US Elections 2016", y = "Raw Polling Data", x = "Starting Date")
 ```
 
-
 ```{r}
 #Remove legend
 ggplot(data = polls_us_election_2016) +
@@ -241,12 +241,14 @@ ggplot(data = polls_us_election_2016) +
   theme(legend.position = "none")
 
 ```
-
+Taking the grade out of the grade/legend made the graph less informing as now we have no idea what the quality of the pollsters are. Adding a more informative title and information to the x and y lab was definetly an improvement. The changing of the color of the however was not extreemly necessary however it does not make the graph any worse off.
 
 ```{r}
 #2.4.1
 
 ```
+
+in geom it is possible to choose between two bar charts: geom_bar or geom_col. They slighlty different.In order to make the heights of the bars represent the values in the data it is more beneficial to use geom_col. However geom_bar will make the height of the bar proportional to the number of cases in each group or the sum of weights if aesthetic is supplied. 
 
 2.4.1.1
 geom_bar() makes the height of the bar proportional to the number of cases in each group (or if the weight aesthetic is supplied, the sum of the weights). If you want the heights of the bars to represent values in the data, use geom_col() instead.
@@ -279,21 +281,21 @@ se which is the standard error. The x and y data are the parameters that control
 #2.4.1.4
 ggplot(data = polls_us_election_2016) +
   geom_bar(mapping = aes(x = grade, y = ..prop..))
-#the problem is with the y axis which is labelled as "..prop..". Which signifies proportion.
-#you should rather use stat_count
 ```
+the problem is with the y axis which is labelled as "..prop..". Which signifies proportion. you should rather use stat_count
+
 ```{r}
 ggplot(data = polls_us_election_2016) +
   geom_bar(mapping = aes(x = grade, y = ..prop..,fill='class',stat='count',group=factor(1)))
 
 ```
+
+
 ```{r}
 #2.5.1
 ggplot(data = polls_us_election_2016,mapping = aes(x = population, y = grade)) +geom_point()
-#the problem with this plot is only giving us particualr points in the data but not really accurately showing us the distribution in the graph.
 ```
-
-
+The problem with this plot is only giving us particualr points in the data but not really accurately showing us the distribution in the graph.
 
 
 
