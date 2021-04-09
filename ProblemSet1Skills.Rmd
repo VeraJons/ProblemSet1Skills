@@ -109,7 +109,7 @@ there needs to be a bracket in between color and aes.
 
 ```{r}
 #Part 2.3
-#1
+#2.3.1
 #How does the facet_grid decide the layout of the grid?
 ggplot(data = polls_us_election_2016) +
   geom_point(mapping = aes(x = startdate,y = rawpoll_clinton)) +
@@ -134,15 +134,16 @@ The facet clearly divides different classifications down into a matrix. The rows
 Here a = all adults, lv = likely voters, rv = registered voters, and v = voters
 
 ```{r}
-#2
+#2.3.2
 # the continuous variable will be converted to a categorical variable, and the plot contains a # facet for each distinct value.
 ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_point() +
   facet_grid(. ~ cty)
 ```
+the continuous variable will be converted to a categorical variable, and the plot contains a # facet for each distinct value.
 source: https://jrnold.github.io/r4ds-exercise-solutions/data-visualisation.html#facets
 ```{r}
-#3
+#2.3.3
 ggplot(data = polls_us_election_2016) +
   geom_point(mapping = aes(x = startdate,
                            y = rawpoll_trump,
@@ -151,7 +152,7 @@ ggplot(data = polls_us_election_2016) +
 ```
 
 ```{r}
-#4
+#2.3.4
 ggplot(data = polls_us_election_2016) +
                theme(axis.text.x = element_text(angle = 45))+
   geom_point(mapping = aes(x = startdate,
@@ -159,6 +160,7 @@ ggplot(data = polls_us_election_2016) +
                            color = grade))+
   facet_grid(rows=vars(population))
 ```
+
 
 ```{r}
 #5
@@ -168,12 +170,9 @@ ggplot(data = polls_us_election_2016) +
                            y = rawpoll_trump,
                            shape = factor(grade)))+
   facet_grid(rows=vars(population))
-
-#The shape palette can deal with a maximum of 6 discrete values because more than 6 becomes difficult to discriminate; you have 10. Consider specifying shapes manually if you must have them.
-#Removed 1961 rows containing missing values (geom_point).
-
 ```
-
+The shape palette can deal with a maximum of 6 discrete values because more than 6 becomes difficult to discriminate; you have 10. Consider specifying shapes manually if you must have them.
+Removed 1961 rows containing missing values (geom_point).
 ```{r}
 #Part 2.4
 #2.4.1
